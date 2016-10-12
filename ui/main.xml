@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<MOML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.1.8"
+    xsi:noNamespaceSchemaLocation="http://www.applusform.com/xsd/moml_ui_1.1.8.xsd">
+    <THEMES id="themeBlack">
+        <THEME id="menuBg" defaultImg="#ffffff" />
+        <THEME id="maskBg" defaultImg="#78000000" />
+        <THEME id="menuBtnImg" layout="76,56" margin="8,8,0,0"   />
+        <THEME id="menuLabelText" layout="240,83" defaultImg="#00000000" pressedImg="#20808080" fontSize="25" minFontSize="-1" textAlign="center" textColor="#000000" fontStyle="normal" padding="12,0,12,0" borderStyle="solid:1|#e2eaf0"  />
+        <THEME id="menuBtnText" defaultImg="#00000000" pressedImg="#20808080" fontSize="24" minFontSize="-1" textAlign="center" textColor="#000000" fontStyle="normal"   />
+        <THEME id="menuText" defaultImg="#00000000" pressedImg="#20808080" fontSize="24" minFontSize="-1"  />
+
+    </THEMES>
+
+    <UILAYOUT landscape="720,1230" portrait="720,1230" theme="themeBlack">
+        <!-- <AGATEWEBVIEW controls="none" defaultImg="#ffffff" homePage="http://m.timemuseum.net/mtime_index.php?" id="webView" layout="0,0,720,1230" src="{caller.homePage}" supportZoom="false"> -->
+        <AGATEWEBVIEW id="webView" loadingIndicator="progressBar" controls="none" defaultImg="#ffffff" homePage="http://m.timemuseum.net/mtime_index.php?"  layout="0,0,720,1230" src="{caller.homePage}" supportZoom="false" onBackKey="function.webViewBackKey" >
+            <LINKMAP>
+                <LINK onStart="function.introAni" url="*/mtime_index.php*" />
+                <LINK onFinish="function.mbInfo" url="*/mtime_index.php*" />
+                <LINK delay="1000" jsPlugin="FileUploadFix.js" url="*/mtime_photo_album.php*" />
+                <LINK delay="1000" jsPlugin="ajaxFileUpload.js" url="*time_article_write.php*" />
+                <LINK delay="1000" jsPlugin="aucFileUpload.js" url="*/mtime_auction_write.php*" />
+                <LINK delay="1000" jsPlugin="boardFileUpload.js" url="*/mtime_community_artcle_write.php*" />
+                <LINK delay="1000" jsPlugin="boardFileUpload.js" url="*/mtime_emperor_dear_write.php*" />
+                <LINK delay="1000" jsPlugin="chatFileUpload.js" url="*/mtime_talk_test.php*" />
+                <LINK delay="300" jsPlugin="jsPlugin.js" url="*/mcash.mobilians.co.kr*" />
+                <LINK delay="300" jsPlugin="jsPlugin.js" url="*/mup.mobilians.co.kr*" />
+                <LINK delay="300" jsPlugin="jsPlugin.js" url="*" />
+                <LINK onFinish="function.introOnFinish" url="*" />
+                <LINK onFinish="function.updateToolbar" url="*" />
+                <LINK onFinish="function.verOnFinish" url="*" />
+                <LINK onFinish="function.verCheckOnFinish" url="*" />
+            </LINKMAP>
+        </AGATEWEBVIEW>
+
+
+           <!-- 인트로 화면 영역 -->
+        <WINDOW defaultImg="#fe000000" id="introWindow" layout="0,0,720,1230" visible="invisible">
+            <WINDOW defaultImg="./img/intro.png" id="logo" layout="0,0,720,1230"
+                loadingEffect="none" />
+            <LABEL ellipsis="none" fontSize="30" fontStyle="bold" id="loadingText"
+                layout="0,750,720,40" minFontSize="-1" multiLine="false" text="Loading..."
+                textAlign="center" textColor="#dddddd" textShadow="#003322" />
+        </WINDOW>
+        <WINDOW id="versionWin" layout="0,970,720,100" visible="invisible">
+            <LABEL fontSize="25" id="versionLab" layout="0,50,700,50"
+                text="v {application.versionName}" textAlign="bottom|right" textColor="#a0ffffff"
+                themeId="version" />
+        </WINDOW>
+
+        <WINDOW align="linear:right|bottom" id="toolbar" layout="522,850,198,100"
+            visible="invisible">
+            <WINDOW align="linear:horizontal|hJustify|center" layout="180sr,90sr">
+                <WINDOW defaultImg="#00000000" id="backbg" layout="90sr,90sr" visible="visible">
+                    <BUTTON defaultImg="./img/web_backgray.png" id="back" layout="80sr,80sr"
+                        margin="5sr"
+                        onClick="webView.back,userVariable.upCancel='true',userVariable.introCancel='true'"
+                        visible="visible" />
+                </WINDOW>
+                <WINDOW defaultImg="#00000000" id="homebg" layout="90sr,90sr" visible='visible'>
+                    <BUTTON defaultImg="./img/web_homegray.png" id="home" layout="80sr,80sr"
+                        margin="5sr"
+                        onClick="webView.src=webView.homePage,userVariable.upCancel='true',userVariable.introCancel='true' "
+                        visible="visible" />
+                </WINDOW>
+            </WINDOW>
+        </WINDOW>
+
+        <WINDOW defaultimg="#00000000" id="listWin" layout="0,0,320,300" visible="visible">
+            <WINDOW align="linear" layout="0,0,300,20">
+                <LABEL fontSize="20" id="testLabe2" layout="300,20" text="" textColor="#ffffff" />
+            </WINDOW>
+        </WINDOW>
+
+        <!-- 메뉴 -->
+        <WINDOW id="menuWindow" layout="0,0,720,1230" align="relative" defaultImg="#00000000" onClick="function.menuWindowPopup" visible='invisible'>
+            <WINDOW  layout="0,0,720,120" align="linear:horizontal" defaultImg="#00000000" enabled="true" visible='visible'>
+            </WINDOW>
+            <WINDOW id="memberInfo" layout="0,120,720,72" align="linear:horizontal" defaultImg="#e2eaf0" >
+                <STYLEBUTTON id="menuBtnImg" themeId="menuBtnImg"  defaultimg="" onClick="function.checkInGo('mtime_my_profile_change.php')"/>
+                <LABEL id="mbInfoNick" layout="130,72" themeId="menuText" textAlign="vCenter|right" fontStyle="bold" text="" onClick="function.checkInGo('mtime_my_nick_change.php')" />
+                <LABEL id="mbInfoAge" layout="80,72" themeId="menuText" textAlign="vCenter|left" text="" onClick="function.checkInGo('mtime_my_nick_change.php')" />
+                <LABEL id="mbInfoArea1" layout="130,72" themeId="menuBtnText" text="" onClick="function.checkInGo('mtime_my_info_change.php')" />
+                <LABEL id="mbInfoArea2" layout="130,72" themeId="menuBtnText" text="" onClick="function.checkInGo('mtime_my_info_change.php')" />
+
+            </WINDOW>
+            <WINDOW id="menuWindowBG"  themeId="maskBg" layout="0,192,720,1038" align="linear:vertical" enabled="true">
+
+                <WINDOW layout="720,83" themeId="menuBg"  align="linear:horizontal" >
+                    <STYLEBUTTON themeId="menuLabelText" text="Home" onClick="function.pageGo('mtime_index.php')"/>
+                    <STYLEBUTTON themeId="menuLabelText" text="시간전시" onClick="function.checkInGo('mtime_time_selling_list.php?sch_gubun=1')"/>
+                    <STYLEBUTTON themeId="menuLabelText" text="시간경매" onClick="function.checkInGo('mtime_auction_main1.php')"/>
+                </WINDOW>
+                <WINDOW layout="720,83" themeId="menuBg" align="linear:horizontal" >
+                    <STYLEBUTTON themeId="menuLabelText" text="접속자" onClick="function.checkInGo('mtime_talk_waiting.php')"/>
+                    <STYLEBUTTON themeId="menuLabelText" text="최근대화" onClick="function.checkInGo('mtime_talk_recently_list.php')"/>
+                    <STYLEBUTTON themeId="menuLabelText" text="커뮤니티" onClick="function.pageGo('mtime_community_review_list.php?bo_table=time_freebbs')"/>
+                </WINDOW>
+                <WINDOW layout="720,83" themeId="menuBg" align="linear:horizontal" >
+                    <STYLEBUTTON themeId="menuLabelText" text="회원검색" onClick="function.checkInGo('mtime_search_member_search.php')"/>
+                    <STYLEBUTTON themeId="menuLabelText" text="내정보수정" onClick="function.checkInGo('mtime_my_info_change.php')"/>
+                    <STYLEBUTTON themeId="menuLabelText" text="내프로필수정" onClick="function.checkInGo('mtime_my_profile_change.php')"/>
+                </WINDOW>
+                <WINDOW layout="720,83" themeId="menuBg" align="linear:horizontal" >
+                    <STYLEBUTTON themeId="menuLabelText" text="큐빅충전" onClick="function.checkInGo('mtime_my_cubic_charge.php')"/>
+                    <STYLEBUTTON themeId="menuLabelText" text="이용권구매" onClick="function.checkInGo('mtime_my_time_voucher.php')"/>
+                    <STYLEBUTTON themeId="menuLabelText" text="황제회원결제" onClick="function.checkInGo('mtime_my_emp_pay_01.php')"/>
+                </WINDOW>
+                <WINDOW layout="720,83" themeId="menuBg" align="linear:horizontal" >
+                    <STYLEBUTTON themeId="menuLabelText" text="전체톡발송" onClick="device.systemPopup('서비스 준비 중입니다.'),function.menuWindowPopup"/>
+                    <STYLEBUTTON themeId="menuLabelText" text="닉네임변경" onClick="function.checkInGo('mtime_my_nick_change.php')"/>
+                    <STYLEBUTTON themeId="menuLabelText" text="1:1문의" onClick="function.checkInGo('mtime_service_list.php?bo_table=time_1to1&amp;stx='+saveVariable.mbID+'&amp;sfl=mb_id')"/>
+                </WINDOW>
+                <WINDOW layout="720,83" themeId="menuBg" align="linear:horizontal" >
+                    <STYLEBUTTON themeId="menuLabelText" text="공지사항" onClick="function.pageGo('mtime_service_list.php?bo_table=time_notice')"/>
+                    <STYLEBUTTON themeId="menuLabelText" text="FAQ" onClick="function.pageGo('mtime_service_faq.php')"/>
+                    <STYLEBUTTON themeId="menuLabelText" text="신고하기" onClick="function.checkInGo('mtime_community_artcle_write.php?bo_table=time_abuse')"/>
+                </WINDOW>
+            </WINDOW>
+
+        </WINDOW>
+
+    </UILAYOUT>
+    <!-- <CMD condition="saveVariable.mbID==''" cmd="memberInfo.visible='gone'" elseCmd="memberInfo.visible='visible'" /> -->
+    <!-- <CMD cmd="function.mbInfo"/> -->
+    <FUNCTIONLIST>
+        <FUNCTION id="webViewBackKey" >
+            <RETURN condition="userVariable.exitPressed" cmd="application.terminate"/>
+            <CMD condition="webView.url()+'?'==webView.homePage or webView.url()=='http://m.timemuseum.net/mtime_index.php'" cmd="device.toastPopup('\'뒤로\'버튼을 한번 더 누르면 종료됩니다.')" elsecmd="caller.back" />
+            <CMD condition="webView.url()+'?'==webView.homePage or webView.url()=='http://m.timemuseum.net/mtime_index.php'" cmd="userVariable.exitPressed = true"/>
+            <CMD condition="webView.url()+'?'==webView.homePage or webView.url()=='http://m.timemuseum.net/mtime_index.php'" cmd="userVariable.exitPressed = false" delay="2000"/>
+        </FUNCTION>
+        <!-- 인트로 애니메이션 함수 -->
+        <FUNCTION id="introAni">
+            <CMD cmd="pageUrl=webView.url()" />
+            <FUNCTIONITEM cmd="toolbar.visible = 'invisible'" />
+
+            <!-- <FUNCTIONITEM condition="webView.url()==webView.homePage and userVariable.introCancel!='true'" cmd="introWindow.visible = 'visible',animation.show('logo', 'fade', '', 3000, ''),userVariable.introCancel='true'" /> -->
+            <FUNCTIONITEM cmd="introWindow.visible = 'visible',userVariable.introCancel='true'"
+                condition="userVariable.introCancel!='true'" />
+            <FUNCTIONITEM cmd="userVariable.deviceToken = saveVariable.deviceToken" />
+            <!-- <CMD cmd="animation.flyIn('logo', 0, 300, logo.width,logo.height, 'bounceOut', 1000, '')" /> -->
+            <!-- animation.show('loadingText', 'fade','roundTrip20', 2000, ''), -->
+        </FUNCTION>
+        <FUNCTION id="toolbarOnFinish">
+            <CMD cmd="toolbar.visible = 'visible'" condition="webView.canBack"
+                elseCmd="toolbar.visible = 'invisible'" />
+        </FUNCTION>
+        <FUNCTION id="updateToolbar">
+            <CMD cmd="userVariable.nowUrl=webView.url()" />
+            <!-- <CMD condition="webView.canBack" cmd="back.defaultImg='./img/web_back.png',home.defaultImg='./img/web_home.png',back.enabled='true',home.enabled='true'" elseCmd="back.defaultImg='./img/web_backgray.png',home.defaultImg='./img/web_homegray.png',back.enabled='false',home.enabled='false'"/> -->
+            <CMD cmd="back.defaultImg='./img/web_back.png',home.defaultImg='./img/web_home.png',back.enabled='true',home.enabled='true'"
+                condition="webView.canBack"
+                elseCmd="back.defaultImg='./img/web_backgray.png',home.defaultImg='./img/web_home.png',back.enabled='false',home.enabled='true'" />
+            <!--  <CMD condition="webView.canForward" cmd="forward.defaultImg='./img/webfor.png'" elseCmd="forward.defaultImg='./img/webforgray.png'"/> -->
+        </FUNCTION>
+        <FUNCTION id="talkOnFinish">
+            <CMD cmd="toolbar.visible = 'invisible'" />
+        </FUNCTION>
+        <FUNCTION id="checkVersion">
+            <FUNCTIONITEM cmd="userVariable.versionXml=file.read('http://m.timemuseum.net/version_mobile_new2.xml?'),userVariable.versionServer = xpath.evaluateEx(userVariable.versionXml, '/application/versionNumber/text()')"
+                condition="device.network.type != 'offline'" />
+            <!-- <FUNCTIONITEM cmd="userVariable.versionServer = xpath.evaluateEx(userVariable.versionXml, '/application/versionNumber/text()')"/> -->
+            <!-- <FUNCTIONITEM cmd="testLabe2.text=webView.url()" /> -->
+            <!-- <FUNCTIONITEM cmd="testLabe2.text=saveVariable.deviceToken" /> -->
+        </FUNCTION>
+        <FUNCTION id="verOnFinish">
+            <CMD cmd="pageUrl=webView.url()" />
+            <FUNCTIONITEM
+                cmd="versionWin.visible = 'visible',function.checkVersion"
+                condition="pageUrl+'?'==webView.homePage or pageUrl=='http://m.timemuseum.net/mtime_index.php'"
+                elseCmd="versionWin.visible = 'invisible'" />
+        </FUNCTION>
+        <FUNCTION id="verCheckOnFinish">
+            <CMD cmd="pageUrl=webView.url()" />
+            <CMD cmd="verServer=userVariable.versionServer" />
+            <CMD cmd="verApp=application.versionName" />
+            <FUNCTIONITEM
+                cmd="device.systemPopup('업데이트', '새 버전이 나왔습니다.\n지금 업데이트 하시겠습니까?','확인:appLauncher.openUri(\'market://details?id=net.timemuseum.emperortalk\',\'\'),application.terminate','취소:userVariable.upCancel=\'true\'','')"
+                condition="pageUrl+'?'==webView.homePage and device.network.type!='offline' and string.cmp(verServer,verApp) and userVariable.upCancel!='true'" />
+        </FUNCTION>
+        <FUNCTION id="introOnFinish">
+            <CMD cmd="pageUrl=webView.url()" />
+            <!-- <FUNCTIONITEM condition="webView.url()+'?'==webView.homePage or webView.url()==webView.homePage and userVariable.introHide!='true'" cmd="animation.hide('introWindow','fade', '', 1000, ''),introWindow.visible = 'invisible',userVariable.introHide='true'" /> -->
+            <FUNCTIONITEM cmd="introWindow.visible = 'invisible',userVariable.introCancel='true'" />
+            <!--  condition="pageUrl+'?'==webView.homePage or pageUrl==webView.homePage" /> -->
+            <FUNCTIONITEM cmd="toolbar.visible = 'visible'" />
+
+        </FUNCTION>
+
+        <!-- 네트워크 체크 -->
+        <FUNCTION id="checkNetwork">
+            <!-- <RETURN condition="userVariable.networkChecked" /> --> <!-- 한번만 검사 -->
+            <!-- <CMD cmd="userVariable.networkChecked = 'true'" /> -->
+            <!-- <CMD delay="3000"> -->
+            <!-- <CMD condition="device.network.type == 'offline' and webView.src != 'embed:/moml/offlinePage.html'" cmd="webView.src = 'embed:/moml/offlinePage.html'" >
+                    <ELSECMD condition="device.network.type != 'offline' and webView.src == 'embed:/moml/offlinePage.html'" cmd="webView.clear,webView.src = 'http://m.timemuseum.net/mtime_index.php'"  />
+                </CMD>
+            -->
+            <CMD
+                cmd="root.navigation.selectedItem='notconnect'"
+                condition="device.network.type == 'offline' and root.navigation.selectedItem!='notconnect'">
+                <!--  <ELSECMD condition="device.network.type != 'offline' and root.navigation.selectedItem=='notconnect'" cmd="root.navigation.selectedItem='main',webView.clear,webView.src = 'http://m.timemuseum.net/mtime_index.php'"  /> -->
+                <ELSECMD
+                    cmd="root.navigation.selectedItem='main'"
+                    condition="device.network.type != 'offline' and root.navigation.selectedItem=='notconnect'" />
+            </CMD>
+        </FUNCTION>
+        <FUNCTION id="popupWebView(url)">
+
+            <CMD cmd="webView.clear,webView.src = 'http://m.timemuseum.net/mtime_index.php'"
+                condition="device.network.type != 'offline'">
+                <ELSECMD cmd="webView.src = 'embed:/moml/offlinePage.html'"
+                    condition="device.network.type == 'offline'" />
+            </CMD>
+        </FUNCTION>
+        <FUNCTION id="showErrorWebpage">
+            <CMD
+                cmd="introWindow.visible = 'invisible',root.navigation.selectedItem='notconnect'" />
+
+        </FUNCTION>
+
+        <FUNCTION id="billCancel()">
+            <CMD
+                cmd="webView.clear,webView.src = 'http://m.timemuseum.net/mtime_my_cubic_charge.php'" />
+        </FUNCTION>
+        <FUNCTION id="payPG(url)">
+            <CMD cmd="appLauncher.openUri(url,'')" />
+        </FUNCTION>
+
+        <FUNCTION id="sendData">
+            <CMD cmd="http.addEventListener('onComplete', 'receiveData')" />
+            <!--1.  처리 후 결과가 오면 receiveData를 호출하도록 리스너에 등록합니다. -->
+            <CMD cmd="userVariable.postReturnValue=http.createRequestId()" />
+            <!-- 2. http 객체를 사용하여 서버에 동시 다발적으로 여러개의 요청을 하는 경우 수신 결과를 체크하기 위한 ID배정 -->
+            <CMD cmd="userVariable.deviceToken='' " condition="saveVariable.setPush == 'false'"
+                elsecmd="userVariable.deviceToken = saveVariable.deviceToken" />
+            <CMD
+                cmd="http.post(userVariable.postReturnValue, 'http://m.timemuseum.net/jquery_set_gcmRegId.php', 'gcmRegId='+userVariable.deviceToken+'' )" />
+            <!-- 3. http.post 객체를 사용하여 서버에 데이터 전송, 이때 파라미터들은 '|' 로 구분하여 전송하며 내부적으로 post방식으로 처리됨 -->
+
+        </FUNCTION>
+        <FUNCTION id="receiveData(reqId,result,code,value,errMsg)">
+            <FUNCTIONITEM cmd="userVariable.deviceToken = saveVariable.deviceToken" />
+            <CMD cmd="http.removeEventListener('onComplete', 'receiveData')" />
+            <!-- 1. 리스너에서 처리함수 해제 -->
+            <!-- <CMD condition="userVariable.postReturnValue+'' == reqId" cmd="userVariable.loginResult = xpath.evaluateEx(value, '/DATA/LOGINRESULT/text()'),function.processData"      elseCmd="device.toastPopup('LOGIN / LOGOUT Fail')"/> -->
+            <!-- 2. 서버에서 받은 결과 값인 value를 분석하여 결과 화인 및 화면 분기 처리, 결과값은 XML형태로 오는 것으로 가정하고 만들어진 코드입니다. -->
+        </FUNCTION>
+        <FUNCTION id="picturePopupCall">
+            <!-- <CMD cmd="userVariable.picturePopupCallback = 'function.' + document.fullPathId + '.setPicture'" /> -->
+            <FUNCTIONITEM cmd="url:picturePopup.xml" target="root.new" />
+        </FUNCTION>
+        <!-- 메뉴 -->
+        <FUNCTION id="menuWindowPopup">
+            <!-- <CMD condition="menuWindow.visible == 'invisible'" cmd="animation.flyIn('menuWindow', 720, 0, menuWindow.width,0, 'easeOut', 100, '')" elseCmd="menuWindow.visible = 'invisible'" /> -->
+            <CMD condition="menuWindow.visible == 'invisible'" cmd="menuWindow.visible = 'visible'" elseCmd="menuWindow.visible = 'invisible'" />
+            <CMD condition="saveVariable.mbID==''" cmd="memberInfo.height='0',menuWindowBG.top='120',menuWindowBG.height='1110'" elseCmd="memberInfo.height='120',menuWindowBG.top='192',menuWindowBG.height='1038'" />
+        </FUNCTION>
+        <FUNCTION id="pageGo(page)">
+            <CMD cmd="webView.src = 'http://m.timemuseum.net/'+page+''" />
+            <CMD cmd="function.menuWindowPopup" />
+        </FUNCTION>
+        <FUNCTION id="checkInGo(page)">
+            <CMD condition="saveVariable.mbID==''" cmd="device.systemPopup('','로그인후 사용가능합니다.','확인:webView.src = \'http://m.timemuseum.net/mtime_login.php\'','','')" elseCmd="webView.src = 'http://m.timemuseum.net/'+page+''" />
+            <CMD cmd="function.menuWindowPopup" />
+        </FUNCTION>
+        <FUNCTION id="mbInfo">
+            <CMD cmd="menuBtnImg.defaultImg=saveVariable.mbInfoPic" />
+            <CMD cmd="mbInfoNick.text=saveVariable.mbInfoNick" />
+            <CMD cmd="mbInfoAge.text=saveVariable.mbInfoAge" />
+            <CMD cmd="mbInfoArea1.text=saveVariable.mbInfoArea1" />
+            <CMD cmd="mbInfoArea2.text=saveVariable.mbInfoArea2" />
+            <CMD condition="saveVariable.mbInfoSex=='1'" cmd="mbInfoNick.textColor='#0859d8'" elseCmd="mbInfoNick.textColor='#ff0000'" />
+
+        </FUNCTION>
+
+    </FUNCTIONLIST>
+</MOML>

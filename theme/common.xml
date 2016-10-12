@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Created by ApplusForm.com on 2013.8.6
+
+	Permission is granted to copy, distribute, modify under the terms of ApplusForm License.
+
+	Copyright (C) 2014 ApplusForm.com. All rights reserved.
+-->
+<MOML version="1.0.0">
+    <!--
+        <THEME id="themeCommonBg" defaultImg="#ffffff"/>
+        <THEME id="themeFullWindow" layout="0,0,320,420" align="linear:vertical|left|top" defaultImg="#ffffff"/>
+        <THEME id="themeMainWindow" layout="0,40,320,420" align="linear:vertical|left|top" defaultImg="#ffffff"/>
+        <THEME id="themeMainContentWindow" layout="320,385" align="linear:vertical|left|top" defaultImg="#ffffff"/>
+        <THEME id="themeTabWindow" layout="0,0,320,380" align="linear:vertical|justify" defaultImg="#ffffff"/>
+        <THEME id="themeTabContentWindow" layout="320,345" align="linear:vertical|left|top" defaultImg="#ffffff"/>
+        <THEME id="themeSubTabWindow" layout="0,0,320,340" align="linear:vertical|justify" defaultImg="#ffffff"/>
+        <THEME id="themeCopyright" layout="320,35" defaultImg="/res/copy.jpg"/>
+        <THEME id="themeMainTabMenu" layout="0,40,320,40" align="linear:horizontal:fill"/>
+        <THEME id="themeSubTabMenu" layout="0,0,320,40" align="linear:horizontal:fill"/>
+        <THEME id="themeNavigationTitle" layout="0,0,320,40" defaultImg="/res/top_bg.jpg" textAlign="center" textColor="#ffffff" fontSize="18"/>
+        <THEME id="themeMenuBtn" layout="10,5,50,30" text="" defaultImg="/res/me.png" onClick="function.document.document.fn_slide"/>
+        <THEME element="LIST" editMode="false" defaultImg="#ffffff"/>
+        <THEME id="themeTitleListLabel" layout="20,0,240,40" textAlign="left|vCenter" textColor="#000000" fontSize="13"/>
+        <THEME id="themeListBtn" defaultImg="#00000000" pressedImg="#112c7bc8"/>
+        <THEME id="themeListHeader" textAlign="vCenter|center" textColor="#000000" fontSize="18" defaultImg="#cccccc"/>
+        <THEME id="themeTabBtn" defaultImg="#00000000"/>
+        <THEME id="themeEdit" fontSize="12" textAlign="left:vCenter" defaultImg="/res/box01.jpg"/>
+    -->
+</MOML>

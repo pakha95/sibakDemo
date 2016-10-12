@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+	Created by ApplusForm.com on 2013.8.6
+
+	Permission is granted to copy, distribute, modify under the terms of ApplusForm License.
+
+	Copyright (C) 2013 ApplusForm.com All rights reserved.
+-->
+<MOML>
+    <APPLICATIONINFO>
+        <START url="ui/start.xml" />
+        <!-- <THEME src="theme/common.xml"/> -->
+        <!-- <UPDATEINFO realTimeType="all" /> -->
+        <ORIENTATION type="defaultPortrait" />
+        <!-- 에러무시. 배포시에 주석풀것!  -->
+        <DEBUG suppressError="all" />
+        <!-- 디버그용이니 배포시에 제거할것! -->
+        <DEBUG log="all"/>
+        <!-- <NETWORK requestMethod="post" timeout="10000"/> -->
+    </APPLICATIONINFO>
+</MOML>
+

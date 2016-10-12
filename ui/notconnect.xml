@@ -1,0 +1,39 @@
+<MOML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.1.8"
+    xsi:noNamespaceSchemaLocation="http://www.applusform.com/xsd/moml_ui_1.1.8.xsd">
+
+    <UILAYOUT landscape="720,1280" portrait="720,1280">
+        <WINDOW defaultImg="#feffffff" layout="0,0,720,1280" visible="visible">
+            <WINDOW align="linear:horizontal|center" defaultImg="#1c2d42" layout="0,0,720,120">
+                <BUTTON defaultImg="./img/top_logo.png" layout="234,40" margin="0,0,12,0"
+                    onClick="function.goMain" />
+                <IMAGE defaultImg="./img/top_logo_txt.png" layout="148,40" />
+
+            </WINDOW>
+            <WINDOW align="linear:horizontal|center" layout="0,300,720,250">
+                <IMAGE defaultImg="./img/wifi.png" layout="100,69" />
+            </WINDOW>
+            <WINDOW align="linear:horizontal|center" layout="0,500,720,80">
+                <LABEL fontSize="10pt" layout="720,80" text="네트워크에 접속할 수 없습니다." textAlign="center|vCenter"
+                    textColor="#333333" />
+            </WINDOW>
+            <WINDOW align="linear:horizontal|center" layout="0,580,720,70">
+                <LABEL fontSize="10pt" layout="720,70" text="네트워크 연결 상태를 확인해 주세요.{'\n'} "
+                    textAlign="center|vCenter" textColor="#999999" />
+            </WINDOW>
+            <WINDOW align="linear:horizontal|center" layout="0,680,720,100">
+                <BUTTON defaultImg="#1c2d42" fontSize="8pt" layout="200,80" onClick="function.goMain"
+                    pressedImg="#bc1c2d42" text="재시도" textColor="#ffffff" />
+            </WINDOW>
+        </WINDOW>
+    </UILAYOUT>
+
+    <FUNCTION id="goMain">
+        <CMD cmd="root.navigation.selectedItem='main'"
+            condition="device.network.type != 'offline'" />
+    </FUNCTION>
+    <FUNCTION id="goMarket">
+        <CMD cmd="appLauncher.openUri('market://details?id=net.timemuseum.emperortalk','')"
+            condition="device.network.type != 'offline'" />
+    </FUNCTION>
+
+</MOML>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<MOML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.1.8"
+    xsi:noNamespaceSchemaLocation="http://www.applusform.com/xsd/moml_ui_1.1.8.xsd">
+    <UILAYOUT defaultImg="#000000" landscape="720,1230" portrait="720,1230">
+        <NAVIGATIONCONTAINER id="navigation" layout="0,0,720,1230" selectedItem="main">
+            <VIEWITEM id="main" src="main.xml" transitionInEffect="none"
+                transitionOutEffect="none" />
+            <VIEWITEM id="picuturePopup" src="picuturePopup.xml" transitionInEffect="none"
+                transitionOutEffect="none" />
+            <VIEWITEM id="notconnect" src="notconnect.xml" transitionInEffect="none"
+                transitionOutEffect="none" />
+        </NAVIGATIONCONTAINER>
+    </UILAYOUT>
+</MOML>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MOML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.1.8"
+    xsi:noNamespaceSchemaLocation="http://www.applusform.com/xsd/moml_ui_1.1.8.xsd">
+    <FUNCTION id="initEvent">
+        <CMD cmd="appLauncher.addEventListener('onComplete', 'onCompleteAppLauncher')" />
+    </FUNCTION>
+    <FUNCTION id="onCompleteAppLauncher">
+        <CMD cmd="device.toastPopup('사진 경로:' + parameter.param[1])" />
+        <CMD cmd="userVariable.picturePathValue = parameter.param[1]" />
+        <!-- <CMD condition="userVariable.picturePathValue !=''" cmd="container.close()" /> -->
+        <!-- <CMD condition="userVariable.picturePathValue !=''" cmd="application.runScript(userVariable.picturePopupCallback)" /> -->
+       <!-- <CMD cmd="root.navigation.main.webView.postJavaScript('setTimeout(ajaxChange(), 1000)')" /> -->
+        <!-- <CMD cmd="root.navigation.main.webView.postJavaScript('setTimeout(function(){ ifrmFileUP(); }, 1000)')" /> -->
+        <CMD condition="userVariable.picturePathValue !=''" cmd="container.close()" />
+
+    </FUNCTION>
+    <!-- 카메라 호출 -->
+    <FUNCTION id="photo">
+        <CMD cmd="appLauncher.setSaveForImageCapture(true),appLauncher.setSaveDirForImageCapture('storage:Photo/'),appLauncher.exec('imageCapture')" />
+        <!-- <CMD cmd="appLauncher.exec('imageCapture')" /> -->
+    </FUNCTION>
+    <!-- 앨범호출 -->
+    <FUNCTION id="gallery">
+        <CMD cmd="appLauncher.exec('albums')" />
+    </FUNCTION>
+   <CMD cmd="appLauncher.addEventListener('onComplete', 'onCompleteAppLauncher')" />
+
+    <UILAYOUT portrait="320,460" landscape="320,460">
+        <WINDOW layout="0,0,320,460" defaultImg="#78000000" onClick="container.close()" id="pic">
+            <!-- 화면의 하단에 출력함. -->
+            <POPUP defaultImg="#ffffff" onClick="container.close()" layout="40,150,240,160">
+                <WINDOW layout="20,10,200,140" align="linear:vertical|justify">
+                    <LABEL layout="200,30"  textColor="#000000" fontStyle="bold" fontSize="18" defaultImg="#00000000" text="사진 선택"  onClick="container.close()" textAlign="left|vCenter"/>
+                    <BUTTON layout="200,30" textColor="#555555" fontStyle="normal" fontSize="14" defaultImg="#00000000" text="갤러리" onClick="function.gallery" textAlign="left|vCenter"/>
+                    <BUTTON layout="200,30" textColor="#555555" fontStyle="normal" fontSize="14" defaultImg="#00000000" text="카메라" onClick="function.photo" textAlign="left|vCenter"/>
+                    <BUTTON layout="200,30" textColor="#555555" fontStyle="normal" fontSize="14" defaultImg="#00000000" text="취소" onClick="container.close()" textAlign="left|vCenter"/>
+                </WINDOW>
+            </POPUP>
+        </WINDOW>
+    </UILAYOUT>
+</MOML>
